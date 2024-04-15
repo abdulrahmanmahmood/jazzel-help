@@ -115,7 +115,7 @@ const SetAddress = () => {
   console.log("markers in setAddress", markers);
 
   return (
-    <div className="w-full bg-[#ceb99c]   p-0 m-0">
+    <div className="w-full bg-[#ceb99c] h-screen  p-0 m-0">
       <Navheader />
       <h1 className="text-3xl font-bold text-center mt-4 ">إضافة حالة جديدة</h1>
 
@@ -261,8 +261,8 @@ const SetAddress = () => {
               </button>{" "}
             </form>
           ) : (
-            <div className="mt-[40%] pb-16 text-center">
-              <h1 className="my-auto text-white text-2xl  font-[800]">
+            <div className="mt-[15%] my-auto  lg:mt-[40%] pb-16 text-center">
+              <h1 className="my-auto  text-white text-2xl  font-[800]">
                 إختر مكان الحالة ثم ادخل البيانات{" "}
               </h1>
             </div>

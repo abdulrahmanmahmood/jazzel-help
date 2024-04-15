@@ -61,18 +61,19 @@ export default function Navheader() {
               <Menu.Items className="absolute right-0 z-[1000] mt-2 w-48 origin-top-right rounded-md bg-[#c0bc9d] py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <Menu.Item>
                   {({ active }) => (
-                    <a
-                      href="#"
+                    <Link
+                    to={"/profilePage"}
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm text-gray-900 no-underline"
                       )}
                     >
                       Your Profile
-                    </a>
+                    </Link>
                   )}
                 </Menu.Item>
-                <Menu.Item>
+
+                {/* <Menu.Item>
                   {({ active }) => (
                     <a
                       href="#"
@@ -84,7 +85,8 @@ export default function Navheader() {
                       Settings
                     </a>
                   )}
-                </Menu.Item>
+                </Menu.Item> */}
+
                 <Menu.Item>
                   {({ active }) => (
                     <a
@@ -99,6 +101,7 @@ export default function Navheader() {
                   )}
                 </Menu.Item>
               </Menu.Items>
+
             </Transition>
           </Menu>
           <button
@@ -142,13 +145,6 @@ export default function Navheader() {
               <Link
                 to="/home"
                 className="block py-2 pl-3 pr-4 text-center text-white  rounded lg:bg-transparent  lg:p-0 dark:text-white"
-                // className={classNames(
-                //                           window.location.pathname === item.href
-                //                             ? "bg-[#554b30] text-white no-underline"
-                //                             : "text-white hover:bg-[#554b30] no-underline hover:text-white",
-                //                           "rounded-md px-3 py-2 text-sm font-medium"
-                //                         )}
-                // aria-current="page"
               >
                 جميع الحالات{" "}
               </Link>
@@ -162,7 +158,7 @@ export default function Navheader() {
             >
               <Link
                 to="/setAddress"
-                className="block  text-center py-2 pl-3 pr-4  border-b border-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                className="block  text-center py-2 pl-3 pr-4  border-b border-gray-100 lg:hover:bg-transparent lg:border-0  lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
               >
                 إضافة حالة جديد
               </Link>

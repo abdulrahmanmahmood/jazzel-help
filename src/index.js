@@ -10,6 +10,7 @@ import Signin from "./Signin";
 import { Signup } from "./Signup";
 import Home from "./Home";
 import SetAddress from "./SetAddress";
+import ProfilePage from "./ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/setAddress",
     element: <SetAddress />,
+  },
+  {
+    path: "/profilePage",
+    element: <ProfilePage />,
   },
 ]);
 
