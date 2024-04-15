@@ -107,6 +107,19 @@ const Home = () => {
       });
     }
   };
+  const handleDelete = async (id) => {
+    if (typeof window !== "undefined") {
+      try {
+        await axios.delete(`http://jazlhelp.runasp.net/api/content/${id}`);
+        console.log("Person deleted successfully!");
+        // Update state or refetch data if necessary
+        fetchPersons();
+      } catch (error) {
+        console.error("Error deleting person:", error);
+        // Handle errors here
+      }
+    }
+  };
 
   const { role, token, email, displayName } = useSelector(
     (state) => state.auth
@@ -153,23 +166,65 @@ const Home = () => {
                 icon={getMarkerIcon(person.color)}
               >
                 <Popup>
-                  <div>
-                    <h4>الاسم: {person.name || "N/A"}</h4>{" "}
-                    {/* Handle case where name is undefined */}
-                    <h4>
-                      الجهة المنفذة: {person.executingEntity || "N/A"}
-                    </h4>{" "}
-                    {/* Handle case where executingEntity is undefined */}
-                    <h4>نوع الحالة: {person.requestType || "N/A"}</h4>{" "}
-                    {/* Handle case where requestType is undefined */}
-                    <h4>رقم الاتصال: {person.contactNumbers || "N/A"}</h4>{" "}
-                    <h4 className="text-blue-500 text-center cursor-pointer">
+                <table className="table-auto border-[1.5px] border-black text-right w-[200px] h-[150px]">
+                    <tbody className="border-[1.5px] border-black">
+                      <tr className="border-[1.5px] border-black">
+                        <td className="border-[1.5px] border-black p-1">
+                          {person.name || "N/A"}
+                        </td>
+                        <td className="border-[1.5px] border-black p-1">
+                          الاسم:
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border-[1.5px] border-black p-1">
+                          {person.executingEntity || "N/A"}
+                        </td>
+
+                        <td className="border-[1.5px] border-black p-1">
+                          الجهة المنفذة
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border-[1.5px] border-black p-1">
+                          {person.requestType || "N/A"}
+                        </td>
+                        <td className="border-[1.5px] border-black p-1">
+                          :نوع الحالة
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td
+                          className={`border-[1.5px] border-black p-1 ${
+                            person.color == "Red" ? "bg-red-500" : ""
+                          }`}
+                        ></td>
+                        <td className="border-[1.5px] border-black p-1">
+                          :النطاق
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td className="border-[1.5px] border-black p-1">
+                          {person.contactNumbers || "N/A"}
+                        </td>
+                        <td className="border-[1.5px] border-black p-1">
+                          :رقم الاتصال
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div className="flex justify-center">
+                    <button className="text-blue-500 cursor-pointer p-1 m-1 ">
                       تعديل هذه الحالة
-                    </h4>{" "}
-                    <h4 className="text-red-500 text-center cursor-pointer">
+                    </button>
+                    <button
+                      className="text-red-500 cursor-pointer ml-4 p-1 m-1"
+                      onClick={() => handleDelete(person.id)}
+                    >
                       مسح هذه الحالة
-                    </h4>{" "}
-                    {/* Handle case where contactNumbers is undefined */}
+                    </button>
                   </div>
                 </Popup>
               </Marker>
@@ -181,21 +236,52 @@ const Home = () => {
               icon={getMarkerIcon(marker.data)}
             >
               <Popup>
-                <div>
-                  <h4>الاسم: {marker.name || "N/A"}</h4>{" "}
-                  {/* Handle case where name is undefined */}
-                  <h4>الجهة المنفذة: {marker.executingEntity || "N/A"}</h4>{" "}
-                  {/* Handle case where executingEntity is undefined */}
-                  <h4>نوع الحالة: {marker.requestType || "N/A"}</h4>{" "}
-                  {/* Handle case where requestType is undefined */}
-                  <h4>رقم الاتصال: {marker.contactNumbers || "N/A"}</h4>{" "}
-                  <h4 className="text-blue-500 text-center cursor-pointer">
+              <table className="table-auto border-[1.5px] border-black text-right w-[200px] h-[150px]">
+                  <tbody className="border-[1.5px] border-black">
+                    <tr className="border-[1.5px] border-black">
+                      <td className="border-[1.5px] border-black p-1">
+                        {marker.name || "N/A"}
+                      </td>
+                      <td className="border-[1.5px] border-black p-1">
+                        الاسم:
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border-[1.5px] border-black p-1">
+                        {marker.executingEntity || "N/A"}
+                      </td>
+                      <td className="border-[1.5px] border-black p-1">
+                        الجهة المنفذة
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border-[1.5px] border-black p-1">
+                        {marker.requestType || "N/A"}
+                      </td>
+                      <td className="border-[1.5px] border-black p-1">
+                        :نوع الحالة
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border-[1.5px] border-black p-1">
+                        {marker.contactNumbers || "N/A"}
+                      </td>
+                      <td className="border-[1.5px] border-black p-1">
+                        :رقم الاتصال
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div className="flex justify-center">
+                  <button className="text-blue-500 cursor-pointer p-1 m-1">
                     تعديل هذه الحالة
-                  </h4>{" "}
-                  <h4 className="text-red-500 text-center cursor-pointer">
+                  </button>
+                  <button
+                    className="text-red-500 cursor-pointer ml-4 p-1 m-1"
+                    onClick={() => handleDelete(marker.id)}
+                  >
                     مسح هذه الحالة
-                  </h4>{" "}
-                  {/* Handle case where contactNumbers is undefined */}
+                  </button>
                 </div>
               </Popup>
             </Marker>
