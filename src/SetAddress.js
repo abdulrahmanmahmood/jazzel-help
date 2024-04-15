@@ -112,14 +112,14 @@ const SetAddress = () => {
     }
   };
   const markers = useSelector((state) => state.markers);
-console.log("markers in setAddress",markers);
+  console.log("markers in setAddress", markers);
 
   return (
     <div className="w-full bg-[#ceb99c]   p-0 m-0">
       <Navheader />
       <h1 className="text-3xl font-bold text-center mt-4 ">إضافة حالة جديدة</h1>
 
-      <div className="w-[97%] justify-between gap-3 flex flex-col  lg:flex-row  mx-auto mt-4">
+      <div className="w-[97%] justify-between gap-3 flex flex-col-reverse  lg:flex-row  mx-auto mt-4">
         <MapContainer
           center={position}
           zoom={14}

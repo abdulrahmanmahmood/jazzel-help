@@ -143,7 +143,7 @@ const Home = () => {
   return (
     <div className="w-full bg-[#ceb99c] h-[100vh] p-0 m-0 ">
       <Navheader />
-      <h1 className="text-4xl font-bold text-center mt-4">جميع الحالات</h1>
+      <h1 className="text-4xl font-bold text-center my-6">جميع الحالات</h1>
       <div className="w-[90%] h-[70vh] mx-auto  border-2 border-blue-500">
         <MapContainer
           center={position}
