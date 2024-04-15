@@ -6,6 +6,7 @@ import gover from "../assets/Emblem_of_Saudi_Arabia_(2).svg.png";
 import logo from "../assets/logo.jpg";
 import logo2 from "../assets/logo2.jpg";
 import { useSelector } from "react-redux"; // Import useSelector hook to access Redux state
+import { Link } from "react-router-dom";
 
 export default function Navheader() {
   // State to manage the visibility of the mobile menu
@@ -133,13 +134,13 @@ export default function Navheader() {
           <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
             <li
               className={`bg-[#554b30] p-1 rounded text-white my-2 lg:my-0 lg:px-4 hover:bg-[#554b30] ${
-                window.location.pathname === "/setAddress"
+                window.location.pathname === "/home"
                   ? "bg-[#554b30] "
                   : "bg-[#a39776] "
               }`}
             >
-              <a
-                href="#"
+              <Link
+                to="/home"
                 className="block py-2 pl-3 pr-4 text-center text-white  rounded lg:bg-transparent  lg:p-0 dark:text-white"
                 // className={classNames(
                 //                           window.location.pathname === item.href
@@ -150,7 +151,7 @@ export default function Navheader() {
                 // aria-current="page"
               >
                 جميع الحالات{" "}
-              </a>
+              </Link>
             </li>
             <li
               className={`bg-[#554b30] p-1 rounded text-white my-2 lg:my-0 lg:px-4 hover:bg-[#554b30] ${
@@ -159,12 +160,12 @@ export default function Navheader() {
                   : "bg-[#a39776] "
               }`}
             >
-              <a
-                href="#"
+              <Link
+                to="/setAddress"
                 className="block  text-center py-2 pl-3 pr-4  border-b border-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
               >
                 إضافة حالة جديد
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
