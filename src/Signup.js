@@ -37,7 +37,7 @@ export const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Construct the userData object
     const userData = {
       displayName: username,
@@ -48,15 +48,15 @@ export const Signup = () => {
       confirmPassword,
       isVolunteer,
     };
-  
+
     if (isVolunteer) {
       userData.charities = parseInt(volunteerCharity);
     } else {
       userData.goverrateAgancy = parseInt(governmentAgency);
     }
-  
+
     console.log("userData", userData);
-  
+
     try {
       const response = await axios.post(
         "http://jazlhelp.runasp.net/api/Account/register",
@@ -64,10 +64,10 @@ export const Signup = () => {
       );
       console.log("Registration successful:", response.data);
       // Handle successful registration, e.g., redirect to login page
-  
+
       // Display the response message to the user
       alert("تم التسجيل بنجاح!");
-  
+
       // Navigate to the verify email page
       navigate("/signin");
     } catch (error) {
@@ -75,7 +75,6 @@ export const Signup = () => {
       setError("Registration failed. Please try again.");
     }
   };
-  
 
   const handleVolunteerRadioChange = () => {
     setIsVolunteer(true);
@@ -362,7 +361,7 @@ export const Signup = () => {
       </div>
       <div className="w-full h-[20vh] bg-[#CEB99E]  ]">
         <h1 className="text-white text-[24px] font-[800] mr-5 pt-5 text-right ">
-          روابط قد تهمك
+          شركاء النجاح{" "}
         </h1>
       </div>
     </div>

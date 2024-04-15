@@ -15,9 +15,12 @@ import OrangeIcon from "./assets/placeholder.png";
 // import backgroundImage from "../src/WhatsApp Image 2024-04-09 at 00.07.33_f0270ff5.jpg";
 import { Icon } from "leaflet";
 import axios from "axios"; // Import Axios for HTTP requests
+import { useDispatch } from "react-redux";
+import { addMarker } from "./rtk/slices/marker";
 
 const SetAddress = () => {
   const position = [19.999208860791935, 42.60094642639161]; // Default position
+  const dispatch = useDispatch();
 
   const { role, token, email, displayName } = useSelector(
     (state) => state.auth
@@ -64,17 +67,19 @@ const SetAddress = () => {
       console.log("Sending data:", dataToSend);
 
       // Send the form data to the endpoint using Axios
-      const response = await axios.post(
-        "http://jazlhelp.runasp.net/api/Content",
-        dataToSend,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Add the Authorization header with the token
-          },
-        }
-      );
+      // const response = await axios.post(
+      //   "http://jazlhelp.runasp.net/api/Content",
+      //   dataToSend,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token}`, // Add the Authorization header with the token
+      //     },
+      //   }
+      // );
 
-      console.log("Data sent successfully:", response.data);
+      // console.log("Data sent successfully:", response.data);
+      dispatch(addMarker(dataToSend));
+
       // Reset form data and selected position after successful submission
       setFormData({ name: "", contactNumbers: "", requestType: "" });
 
@@ -106,6 +111,8 @@ const SetAddress = () => {
       });
     }
   };
+  const markers = useSelector((state) => state.markers);
+console.log("markers in setAddress",markers);
 
   return (
     <div className="w-full bg-[#ceb99c]   p-0 m-0">

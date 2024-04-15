@@ -40,7 +40,7 @@ function App() {
       </div>
       <div className="w-full h-[20vh] bg-[#CEB99E]">
         <h1 className="text-white text-[24px] font-[800] mr-5 pt-5 text-right ">
-          روابط قد تهمك
+          شركاء النجاح{" "}
         </h1>
       </div>
     </div>
