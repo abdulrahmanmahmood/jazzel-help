@@ -29,9 +29,12 @@ const SetAddress = () => {
     contactNumbers: "",
     requestType: "",
     executingEntity: "",
+    saudiNationalID: "",
   });
   const [selectedPosition, setSelectedPosition] = useState(null);
-
+  const handleSaudiNationalIDChange = (e) => {
+    setFormData({ ...formData, saudiNationalID: e.target.value }); // Update saudiNationalID in the form data
+  };
   // Event listener to capture click events on the map
   const LocationFinder = () => {
     const map = useMapEvents({
@@ -45,6 +48,9 @@ const SetAddress = () => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.saudiNationalID.length < 10) {
+      alert("رقم الهوية يجب أن يكون على الأقل 10 أرقام");
+    }
     try {
       const dataToSend = {
         name: formData.name,
@@ -53,6 +59,7 @@ const SetAddress = () => {
         longitude: selectedPosition.lng,
         latitude: selectedPosition.lat,
         executingEntity: formData.executingEntity,
+        saudiNationalID: "1100430121",
       };
       console.log("Sending data:", dataToSend);
 
@@ -103,7 +110,7 @@ const SetAddress = () => {
   return (
     <div className="w-full bg-[#ceb99c]   p-0 m-0">
       <Navheader />
-      <h1 className="text-2xl font-bold text-center mt-4">إضافة حالة جديدة</h1>
+      <h1 className="text-3xl font-bold text-center mt-4 ">إضافة حالة جديدة</h1>
 
       <div className="w-[97%] justify-between gap-3 flex flex-col  lg:flex-row  mx-auto mt-4">
         <MapContainer
@@ -134,11 +141,14 @@ const SetAddress = () => {
           {selectedPosition ? (
             <form
               onSubmit={handleSubmit}
-              style={{
-                // backgroundImage: `url(${backgroundImage})`,
-                // backgroundSize: "cover",
-                // backgroundPosition: "center",
-              }}
+              style={
+                {
+                  // backgroundImage: `url(${backgroundImage})`,
+                  // backgroundSize: "cover",
+                  // backgroundPosition: "center",
+                }
+              }
+              className="text-right"
             >
               <div className="mb-4">
                 <label
@@ -174,6 +184,23 @@ const SetAddress = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, contactNumbers: e.target.value })
                   }
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="saudiNationalID"
+                  className="block text-sm font-medium text-white"
+                >
+                  رقم الهوية
+                </label>
+                <input
+                  type="text"
+                  id="saudiNationalID"
+                  name="saudiNationalID"
+                  value={formData.saudiNationalID}
+                  onChange={handleSaudiNationalIDChange}
                   className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                   required
                 />
@@ -227,8 +254,10 @@ const SetAddress = () => {
               </button>{" "}
             </form>
           ) : (
-            <div className="mt-[40%] ">
-              <h1 className="my-auto ">إختر مكان الحالة ثم ادخل البيانات </h1>
+            <div className="mt-[40%] pb-16 text-center">
+              <h1 className="my-auto text-white text-2xl  font-[800]">
+                إختر مكان الحالة ثم ادخل البيانات{" "}
+              </h1>
             </div>
           )}
         </div>
